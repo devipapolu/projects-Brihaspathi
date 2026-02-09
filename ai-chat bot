@@ -1,0 +1,268 @@
+
+1. Enterprise AI Chatbot (RAG-based) – Brihaspathi Technologies
+GitHub: https://github.com/devipapolu/brihas-chat_bot.git
+
+Description:
+Designed, deployed, and managed an AI-powered enterprise chatbot to automate customer support and internal information retrieval for Brihaspathi Technologies. Implemented a Retrieval-Augmented Generation (RAG) architecture that searches internal office documents and provides accurate, context-aware responses using LLMs.
+Handled complete end-to-end DevOps ownership, including frontend and backend deployment on cloud infrastructure, security, and production readiness.
+
+Key Contributions & Responsibilities:
+Deployed frontend (HTML, CSS, JavaScript) and backend (Python, FastAPI) on cloud servers
+Implemented RAG pipeline using LangChain, ChromaDB, and LLMs (Ollama)
+Configured Nginx reverse proxy, SSL/TLS (Let’s Encrypt), and domain routing
+Managed Linux server, Git-based deployments, and production monitoring
+Ensured secure access, scalability, and high availability
+
+Tech Stack:
+AWS EC2 / VPS (Contabo), Python, FastAPI, LangChain, ChromaDB, HTML/CSS/JS, Nginx, Git, SSL, Linux
+
+Impact:
+Improved response accuracy and reduced manual support effort
+Enabled fast and secure access to internal enterprise knowledge.
+
+✅ AI Chatbot Workflow – Step by Step (Frontend → Backend → LLaMA)
+1️⃣ Frontend (React UI)
+User (chatbot) lo question type chestadu
+Question FastAPI backend ki API request ga pampistundi
+
+2️⃣ Backend (Python FastAPI)
+Question backend ki vachaka, machine ki text ardam kaadhu kabatti embedding ga convert chestam
+Sentence-Transformers use chesi numeric vector (embedding) create chestam
+
+3️⃣ Vector DB (ChromaDB)
+PDF ni admin/backend upload chestadu
+PyPDF2 / pdfplumber → PDF text extract → chunks divide
+Sentence-Transformers → chunks embedding
+Embedding + chunk text ChromaDB lo store
+Vector DB allows semantic similarity search → meaning: "Question ki relevant PDF text fast ga retrive avutundi"
+
+4️⃣ RAG (Retrieval-Augmented Generation)
+Question embedding → ChromaDB → relevant chunks retrive
+Relevant chunks → LLaMA 3.2 model ki estam
+Ollama → LLaMA 3.2 run chesi human-readable answer generate chestundi
+
+5️⃣ Return answer to frontend
+Generated answer → FastAPI → React UI → user ki display
+
+🔹 Key Points – Why Each Tool is Used
+Tool	                                 Purpose
+PyPDF2 / pdfplumber	         PDF text extract & chunking
+Sentence-Transformers	      Text → numeric embedding
+ChromaDB	                 Vector DB for similarity search & retrieval
+FastAPI	                   Backend API handling, receives question, returns answer
+LLaMA 3.2                 	Generate human-readable answer from retrieved chunks
+Ollama	                    Run LLaMA model efficiently
+
+✅ AI Chatbot Deployment – Step by Step
+Step 1: Prepare Project
+
+Frontend → React.js (UI)
+
+Backend → Python + FastAPI (AI + APIs)
+
+LLM → LLaMA 3.2 run via Ollama
+
+RAG → Retrieval-Augmented Generation for context-based answers
+
+Database → ChromaDB (Vector DB for embeddings)
+
+ML packages → PyPDF2, Sentence-Transformers, OpenCV
+
+Goal: Full project local lo test chesi run cheyyadam.
+
+Step 2: Containerization with Docker
+
+Why? Environment-independent, scalable, consistent deployment
+
+Actions:
+
+Dockerfile create cheyadam
+
+React frontend build copy
+
+Python backend dependencies install
+
+ML model setup
+
+Docker Compose create cheyadam
+
+Frontend container
+
+Backend container
+
+Database container (ChromaDB)
+
+Command run:
+
+docker-compose up -d
+
+
+Containers run → project environment ready
+
+Step 3: Process Management – PM2
+
+Why? Continuous backend process run, auto-restart, zero downtime
+
+Actions:
+
+pm2 start python_backend.py --name "ai-backend"
+pm2 save
+
+
+Node.js backend (if any) kuda PM2 lo run cheyachu
+
+Step 4: AWS EC2 Setup
+
+EC2 instance create cheyadam
+
+Security Group open ports:
+
+22 → SSH
+
+80 → HTTP
+
+443 → HTTPS
+
+Docker install cheyadam
+
+Container run cheyadam EC2 lo
+
+Step 5: Domain & Subdomain – GoDaddy
+
+Main domain → brihaspathi.com
+
+Subdomain → chatbot.brihaspathi.com
+
+DNS Setup:
+
+Subdomain A record → EC2 public IP
+
+TTL → 600 sec
+
+Step 6: Nginx Reverse Proxy
+
+Why? Incoming traffic handle, backend secure access, HTTPS
+
+Configuration Example:
+
+server {
+    listen 80;
+    server_name chatbot.brihaspathi.com;
+
+    location / {
+        proxy_pass http://localhost:3000;  # React frontend
+    }
+
+    location /api/ {
+        proxy_pass http://localhost:5000; # FastAPI backend
+    }
+}
+
+Step 7: SSL / HTTPS
+
+Let’s Encrypt / Certbot install
+
+Command:
+
+sudo certbot --nginx -d chatbot.brihaspathi.com
+
+
+Why? Secure communication, professional deployment
+
+Step 8: Connect Backend & Frontend
+
+React frontend → FastAPI backend APIs call
+
+FastAPI backend → Ollama → LLaMA 3.2 runs model
+
+RAG → Search embeddings in ChromaDB
+
+Response → Frontend display to user
+
+Step 9: Testing & Monitoring
+
+Access: https://chatbot.brihaspathi.com
+
+Test:
+
+Login / authentication
+
+Question → Answer flow
+
+RAG + LLM correctness
+
+PM2 + Docker logs → monitor containers
+
+Nginx logs → monitor web traffic
+
+Step 10: Production Ready
+
+Fully containerized → portable across environments
+
+Continuous backend → PM2
+
+Secure → Nginx + SSL
+
+Domain integrated → users can access chatbot
+
+🔹 Interview One-Liner
+
+“We containerized the AI Chatbot with Docker, deployed it on AWS EC2, managed backend with PM2, configured Nginx reverse proxy with SSL for the subdomain chatbot.brihaspathi.com, and connected frontend with FastAPI backend running LLaMA 3.2 via Ollama and RAG on ChromaDB.”
+
+
+
+
+
+
+
+
+
+
+
+
+✅ AI Chatbot Workflow – Step by Step (Frontend → Backend → LLaMA)
+
+1️⃣ Frontend (React UI)
+
+User (chatbot) lo question type chestadu
+
+Question FastAPI backend ki API request ga pampistundi
+
+2️⃣ Backend (Python FastAPI)
+
+Question backend ki vachaka, machine ki text ardam kaadhu kabatti embedding ga convert chestam
+
+Sentence-Transformers use chesi numeric vector (embedding) create chestam
+
+3️⃣ Vector DB (ChromaDB)
+
+PDF ni admin/backend upload chestadu
+
+PyPDF2 / pdfplumber → PDF text extract → chunks divide
+
+Sentence-Transformers → chunks embedding
+
+Embedding + chunk text ChromaDB lo store
+
+Vector DB allows semantic similarity search → meaning: "Question ki relevant PDF text fast ga retrive avutundi"
+
+4️⃣ RAG (Retrieval-Augmented Generation)
+
+Question embedding → ChromaDB → relevant chunks retrive
+
+Relevant chunks → LLaMA 3.2 model ki estam
+
+Ollama → LLaMA 3.2 run chesi human-readable answer generate chestundi
+
+5️⃣ Return answer to frontend
+
+Generated answer → FastAPI → React UI → user ki display
+
+🔹 Key Points – Why Each Tool is Used
+Tool	Purpose
+PyPDF2 / pdfplumber	PDF text extract & chunking
+Sentence-Transformers	Text → numeric embedding
+ChromaDB	Vector DB for similarity search & retrieval
+FastAPI	Backend API handling, receives question, returns answer
+LLaMA 3.2	Generate human-readable answer from retrieved chunks
+Ollama	Run LLaMA model efficiently
