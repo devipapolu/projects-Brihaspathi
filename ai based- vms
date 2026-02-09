@@ -29,7 +29,13 @@ React.js • Node.js • Express.js • MongoDB • Python • OpenCV • FaceNe
 🔹 Why we used React.js in frontend?
 “We chose React.js for the frontend because it helps us build a fast and dynamic Single Page Application. React allows component reusability, smooth navigation without page reloads, and easy integration with backend APIs. Since our backend is also JavaScript (Node.js), development and integration became simpler. So React helped us create a scalable and maintainable UI.”
 
+Node.js:
+👉 “We used Node.js because it is fast, event-driven, and very good at handling APIs and real-time applications.”
+
+Express.js:
+👉 “We used Express since it is a lightweight framework that makes building APIs and routing easier, and it works perfectly with Node.js.”
 ✅ How we used React in this project?
+
 Now features clearly cheppali. Ila:
 
 1️⃣ Login Page
@@ -309,14 +315,12 @@ Check-in
 Checkout
 ↓
 Thank you + feedback
-✅ VMS Project – API Usage (Clear Mapping)
 
+✅ VMS Project – API Usage (Clear Mapping)
 👉 Total 3 layers unnayi
 
 Frontend (React)
-
 Backend–1 (Node.js + Express) → Main APIs
-
 Backend–2 (Python + FastAPI) → AI APIs
 
 🔹 1️⃣ Authentication APIs
@@ -326,14 +330,11 @@ Enduku?
 Receptionist secure ga login avvali
 
 Frontend (React):
-
 POST /api/auth/login
 
 
 Node.js (Express):
-
 username/password verify
-
 JWT generate
 
 Used at:
@@ -346,16 +347,12 @@ Enduku?
 Old visitor aa new visitor aa ani identify cheyadaniki
 
 Frontend (React):
-
 POST /api/face/verify
 
 
 Python (FastAPI):
-
 OpenCV → face detect & crop
-
 FaceNet → embedding generate
-
 MongoDB lo embeddings tho compare
 
 Response:
@@ -376,14 +373,11 @@ Enduku?
 New visitor details store cheyadaniki
 
 Frontend (React):
-
 POST /api/visitors/register
 
 
 Node.js:
-
 details receive chestundi
-
 MongoDB lo store chestundi
 
 Used at:
@@ -396,14 +390,11 @@ Enduku?
 MD online aa busy aa ani check cheyadaniki
 
 Frontend:
-
 GET /api/hosts/status/{hostId}
 
 
 Node.js:
-
 visits/logs collection check chestundi
-
 active visit unda ani decide chestundi
 
 Response:
@@ -418,19 +409,15 @@ Used at:
 
 🔹 5️⃣ Send Meeting Request API
 📌 Send Request API
-
 Enduku?
 Host ki WhatsApp notification pampadaniki
 
 Frontend:
-
 POST /api/meetings/request
 
 
 Node.js:
-
 host phone number fetch
-
 WhatsApp API trigger
 
 Used at:
@@ -438,19 +425,15 @@ Used at:
 
 🔹 6️⃣ WhatsApp Approval Webhook API
 📌 Approval Callback API
-
 Enduku?
 Host approve/reject response receive cheyadaniki
 
 WhatsApp API:
-
 POST /api/meetings/response
 
 
 Node.js:
-
 approval status receive chestundi
-
 DB lo visit log create chestundi
 
 Used at:
@@ -458,19 +441,14 @@ Used at:
 
 🔹 7️⃣ Check-in API
 📌 Visitor Check-in API
-
 Enduku?
 Visitor lopalaki vellina time record cheyadaniki
 
 Frontend:
-
 POST /api/visits/checkin
 
-
 Node.js:
-
 check_in time save
-
 host status BUSY update
 
 Used at:
@@ -478,21 +456,16 @@ Used at:
 
 🔹 8️⃣ Check-out API
 📌 Visitor Check-out API
-
 Enduku?
 Meeting complete ayyaka exit track cheyadaniki
 
 Frontend:
-
 POST /api/visits/checkout
 
 
 Node.js:
-
 check_out time save
-
 host status ONLINE update
-
 Thank-you message trigger
 
 Used at:
@@ -505,12 +478,10 @@ Enduku?
 History & tracking kosam
 
 Frontend:
-
 GET /api/visits/logs
 
 
 Node.js:
-
 MongoDB nundi logs fetch
 
 Used at:
@@ -523,14 +494,11 @@ Enduku?
 Advance appointment booking kosam
 
 Frontend:
-
 POST /api/bookings/create
 
 
 Node.js:
-
 booking details store
-
 conflicts check
 
 Used at:
@@ -541,16 +509,12 @@ Used at:
 
 Enduku?
 Visitor experience improve cheyadaniki
-
 Frontend / WhatsApp link:
-
 POST /api/feedback/submit
 
 
 Node.js:
-
 feedback store
-
 Used at:
 👉 After checkout
 
@@ -558,73 +522,51 @@ Used at:
 ✅ Online Booking Through Call – End-to-End Process
 🔹 Step 1: Visitor Calls Reception
 Theoretical
-
 Visitor office ki phone call chestadu:
-
 “MD sir tho meeting kavali”
-
 Practical
-
 Receptionist call lift chestundi
 Booking page open chestundi (React)
 
 🔹 Step 2: Receptionist Enters Booking Details
-
 React Booking Form lo:
-
 Visitor name
-
 Phone number
-
 Host (MD)
-
 Date
-
 Preferred time
 
 Purpose
-
 👉 Same booking page, just data source is call, not visitor.
 
 🔹 Step 3: Fetch Available Slots
-
 Receptionist date select chestundi
 
 React:
-
 GET /api/hosts/slots?hostId=md&date=2026-02-10
 
 
 Node.js:
-
 MongoDB bookings check
-
 Free slots calculate
-
 Available slots return
 
 Frontend:
 👉 only free slots show chestundi
 
 🔹 Step 4: Slot Confirmation (Call lo)
-
 Receptionist (call lo):
-
 “10:30 AM slot available undi, okay na?”
 
 Visitor:
-
 “Yes”
 
 Receptionist:
 👉 Slot select chestundi
 
 🔹 Step 5: Create Booking (API)
-
 React:
-
 POST /api/bookings/create
-
 
 Payload:
 
@@ -640,13 +582,10 @@ Payload:
 
 
 Node.js:
-
 Slot availability verify
-
 Booking store in MongoDB
 
 🔹 Step 6: Confirmation Messages
-
 Booking success ayyaka:
 
 Node.js:
@@ -661,28 +600,21 @@ New booking:
 Ravi – 10:30 AM
 (Source: Call)
 
-
 👉 Fully automatic
 
 🔹 Step 7: Booking Day – Visitor Arrives
-
 Visitor office ki vastadu
 
 Receptionist:
-
 Phone number enter chestundi
 
 React:
-
 GET /api/bookings/search?phone=9876543210
 
-
 Node.js:
-
 Booking details return
 
 🔹 Step 8: Fast Check-in
-
 Already booking undi kabatti:
 ❌ no long registration
 
@@ -690,31 +622,22 @@ Receptionist:
 👉 Check-in click
 
 React:
-
 POST /api/visits/checkin
 
-
 Node.js:
-
 check_in time save
-
 host status BUSY
 
 🔹 Step 9: Meeting Completion
-
 Meeting ayyaka:
 
 Checkout:
-
 POST /api/visits/checkout
 
 
 Node.js:
-
 check_out save
-
 Thank you message
-
 Feedback link
 
 ✅ Booking Through Call – Simple Diagram
@@ -743,11 +666,9 @@ Checkout
 Thank you + feedback
 
 ✅ Interview One-Line Answer
-
 “Apart from online self-booking, we also support booking through phone calls. The receptionist enters visitor details during the call, our backend checks slot availability, stores the booking in MongoDB, and automatically sends WhatsApp confirmations to both host and visitor.”
 
 ✅ Key Advantage (Mention This!)
-
 ✔ Works for non-technical visitors
 ✔ No waiting at office
 ✔ Same backend logic reused
