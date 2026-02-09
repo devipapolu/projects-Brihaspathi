@@ -25,6 +25,23 @@ React.js • Node.js • Express.js • MongoDB • Python • OpenCV • FaceNe
 • Enabled real-time tracking and host notifications
 • Achieved consistent deployments across local and production using
 
+Deployment & Responsibilities (Interview Answer)
+“My primary responsibility was deployment and coordination with developers.
+I closely worked with the development team to understand the complete end-to-end application flow, including frontend, backend APIs, AI services, and database interactions.”
+
+“For deployment, I used Docker to containerize the source code.
+Containerization helped us create an environment-independent setup, so the application could run consistently on any server without dependency issues.”
+
+“I created Dockerfiles, built Docker images, and ran the application inside containers.
+This made deployment, scaling, and maintenance much easier.”
+
+“To keep the application running continuously, I used PM2 as the process manager.
+PM2 automatically restarts the application in case of crashes and ensures high availability.”
+
+“For security and production readiness, I configured NGINX as a reverse proxy with a custom domain and SSL certificate.
+NGINX helped in routing traffic securely, improving performance, and protecting the application from unwanted or bad traffic.”
+
+“Overall, I handled end-to-end deployment, ensured application stability, security, and smooth coordination between development and production environments.”
 
 🔹 Why we used React.js in frontend?
 “We chose React.js for the frontend because it helps us build a fast and dynamic Single Page Application. React allows component reusability, smooth navigation without page reloads, and easy integration with backend APIs. Since our backend is also JavaScript (Node.js), development and integration became simpler. So React helped us create a scalable and maintainable UI.”
